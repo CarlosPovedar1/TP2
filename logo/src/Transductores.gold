@@ -1,0 +1,43 @@
+using gold.**
+
+procedure main(args:String[]) begin
+	Estados := {0,1}
+	Input := ('a'‥'b')
+	Output := Input
+	inicial := 0
+	Finales := {}
+	
+	T := GDeterministicTransducer(Estados,Input,Output,
+	                             inicial,Finales,transiciones,
+	                             imprEstados,imprFlechas)
+    GAutomataFrame.show(T)
+end
+
+function transiciones(estado, simbolo) begin
+	if estado = 0 then
+		return 1
+		
+	else
+		return 0
+		
+	end
+end
+
+function imprFlechas(estado,simbolo) begin
+	if estado = 0 then
+		return simbolo
+	else
+		if simbolo = 'a' then
+			return "b"
+			
+		else
+			return "a"
+			
+		end
+		
+	end
+end
+
+function imprEstados(estado) begin
+	return λ
+end

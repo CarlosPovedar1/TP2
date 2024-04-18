@@ -1,6 +1,112 @@
+/*
+ * 
+ * 
+ * 
+ */
+//-----------------------
 
-/* */
+using gold.structures.automaton.*
+using gold.visualization.automaton.*
 
 procedure main(args:String[]) begin
-	print "Hello World"
+	Q := {"I", "F", "F1","ERROR","O1","R1","W1","A1","R2","L1","E1","F2","R3","I1",
+	"G1","H1","T1", "R4","E2","P1","E3","A2"}
+	Σ := {'f', 'd','$','o','r','w','a','l','e','f','t','i','g','h','t','p','t'}
+	q := "I"
+	F := {"F"}
+	
+	A : GDeterministicAutomaton := GDeterministicAutomaton(Q, Σ, q, F, δ)
+	GAutomataFrame.show(A)
 end
+
+function δ(estado, comando) begin
+	if estado = "I" then
+		if comando ='f'  then
+			return "F1"
+		elseif comando ='l' then
+			return "L1"
+		elseif comando ='$' then
+			return "F"
+		elseif comando ='r' then
+			return "R3"
+		else
+			return "ERROR"
+		end
+		
+		//FORWARD
+	elseif estado.equals("F1") then
+		if comando= 'd' then
+			return "I"
+		elseif comando ='o'then
+			return "O1"
+		else
+			return"ERROR"
+		end
+	elseif estado.equals("O1")&& comando ='r'  then
+			return"R1"
+	
+	elseif estado.equals("R1")  then
+		if comando ='w'  then
+			return"W1"
+		else
+			return "ERROR"
+		end
+	elseif estado.equals("W1")  then
+		if comando ='a'  then
+			return"A1"
+		else
+			return "ERROR"
+		end
+	elseif estado.equals("A1")  then
+		if comando ='r'  then
+			return"R2"
+		else
+			return "ERROR"
+		end
+	elseif estado.equals("R2")  then
+		if comando ='d'  then
+			return"I"
+		else
+			return "ERROR"
+		end
+		
+		//LEFT
+	elseif estado.equals("L1")&& comando ='e'  then
+			return"E1"
+	elseif estado.equals("E1")&& comando ='f'  then
+			return"F2"
+	elseif estado.equals("F2")&& comando ='t'  then
+			return"I"
+		//RIGHT
+	elseif estado.equals("R3")  then
+		if comando ='i'  then
+			return"I1"
+		elseif comando = 'e' then
+			return"E2"
+		else
+			return "ERROR"
+		end
+			
+	elseif estado.equals("I1")&& comando ='g'  then
+			return"G1"
+	elseif estado.equals("G1")&& comando ='h'  then
+			return"H1"
+			
+	elseif estado.equals("H1")&& comando ='t'  then
+			return"I"
+			
+	//Repeat
+	elseif estado.equals("E2")&& comando ='p'  then
+			return"P1"
+	elseif estado.equals("P1")&& comando ='e'  then
+			return"E3"
+	elseif estado.equals("E3")&& comando ='a'  then
+			return"A2"
+	elseif estado.equals("A2")&& comando ='t'  then
+			return 	"I"
+	else
+		return "ERROR"
+	end
+end
+
+
