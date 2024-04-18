@@ -14,252 +14,558 @@ public final class logo {
     int $line=0;
     Object $result=null;
     $try:try {
-      $line=12;
-      Object Q=$fix(GCollections.asSet("I","F","F1","ERROR","O1","R1","W1","A1","R2","L1","E1","F2","R3","I1","G1","H1","T1","R4","E2","P1","E3","A2"));
-      $line=14;
-      Object \u03A3=$fix(GCollections.asSet('f','d','$','o','r','w','a','l','e','f','t','i','g','h','t','p','t'));
-      $line=15;
-      Object q=$fix("I");
-      $line=16;
-      Object F=$fix(GCollections.asSet("F"));
-      $line=18;
-      GDeterministicAutomaton A=$cast(GDeterministicAutomaton.class,$fix($invokeConstructor(GDeterministicAutomaton.class,new Object[]{Q,\u03A3,q,F,new GMethod(logo.class,"\u03B4")})));
-      $line=19;
-      GAutomataFrame.show($cast(gold.structures.automaton.IAutomaton.class,A));
+      $line=21;
+      Object Estados=$fix(GCollections.asSet("I","F","F1","ERROR","O1","R1","W1","A1","R2","L1","E1","F2","R3","I1","G1","H1","E2","P1","E3","A2","PI","PD","N1","P2","N2","U1","E4","D1","O2","W2"));
+      $line=23;
+      Object Input=$fix(GCollections.asSet('f','d','$','o','r','w','a','l','e','f','t','i','g','h','t','p','t','1','2','3','4','5','7','8','9','0','u','n','F','R','L','T','P','D','/','*','N','[',']'));
+      $line=25;
+      Object inicial=$fix("I");
+      $line=26;
+      Object Output=$fix(Input);
+      $line=27;
+      Object Finales=$fix(GCollections.asSet("F"));
+      $line=30;
+      Object T=$fix($invokeConstructor(GDeterministicTransducer.class,new Object[]{Estados,Input,Output,inicial,Finales,new GMethod(logo.class,"transiciones"),new GMethod(logo.class,"imprEstados"),new GMethod(logo.class,"imprFlechas")}));
+      $line=33;
+      GAutomataFrame.show($cast(gold.structures.automaton.IAutomaton.class,T));
     }
     catch (Throwable $throwable) {
       $rethrow($throwable,logo.class,"main",$line);
     }
   }
-  public static Object \u03B4(Object estado, Object comando) {
+  public static Object transiciones(Object estado, Object comando) {
     int $line=0;
     Object $result=null;
     $try:try {
-      $line=23;
+      $line=37;
       if ($opEqualY(estado,"I")) {
-        $line=24;
+        $line=38;
         if ($opEqualY(comando,'f')) {
-          $line=25;
+          $line=39;
           $result="F1";
           if (true) break $try;
         }
         else {
-          $line=26;
+          $line=40;
           if ($opEqualY(comando,'l')) {
-            $line=27;
+            $line=41;
             $result="L1";
             if (true) break $try;
           }
           else {
-            $line=28;
+            $line=42;
             if ($opEqualY(comando,'$')) {
-              $line=29;
+              $line=43;
               $result="F";
               if (true) break $try;
             }
             else {
-              $line=30;
+              $line=44;
               if ($opEqualY(comando,'r')) {
-                $line=31;
+                $line=45;
                 $result="R3";
                 if (true) break $try;
               }
               else {
-                $line=33;
-                $result="ERROR";
-                if (true) break $try;
+                $line=46;
+                if ($opEqualY(comando,'[')) {
+                  $line=47;
+                  $result="I";
+                  if (true) break $try;
+                }
+                else {
+                  $line=48;
+                  if ($opEqualY(comando,']')) {
+                    $line=49;
+                    $result="I";
+                    if (true) break $try;
+                  }
+                  else {
+                    $line=50;
+                    if ($opEqualY(comando,'0')) {
+                      $line=51;
+                      $result="N1";
+                      if (true) break $try;
+                    }
+                    else {
+                      $line=52;
+                      if ($opEqualY(comando,'1')) {
+                        $line=53;
+                        $result="N1";
+                        if (true) break $try;
+                      }
+                      else {
+                        $line=54;
+                        if ($opEqualY(comando,'2')) {
+                          $line=55;
+                          $result="N1";
+                          if (true) break $try;
+                        }
+                        else {
+                          $line=56;
+                          if ($opEqualY(comando,'3')) {
+                            $line=57;
+                            $result="N1";
+                            if (true) break $try;
+                          }
+                          else {
+                            $line=58;
+                            if ($opEqualY(comando,'4')) {
+                              $line=59;
+                              $result="N1";
+                              if (true) break $try;
+                            }
+                            else {
+                              $line=60;
+                              if ($opEqualY(comando,'5')) {
+                                $line=61;
+                                $result="N1";
+                                if (true) break $try;
+                              }
+                              else {
+                                $line=62;
+                                if ($opEqualY(comando,'6')) {
+                                  $line=63;
+                                  $result="N1";
+                                  if (true) break $try;
+                                }
+                                else {
+                                  $line=64;
+                                  if ($opEqualY(comando,'7')) {
+                                    $line=65;
+                                    $result="N1";
+                                    if (true) break $try;
+                                  }
+                                  else {
+                                    $line=66;
+                                    if ($opEqualY(comando,'8')) {
+                                      $line=67;
+                                      $result="N1";
+                                      if (true) break $try;
+                                    }
+                                    else {
+                                      $line=68;
+                                      if ($opEqualY(comando,'9')) {
+                                        $line=69;
+                                        $result="N1";
+                                        if (true) break $try;
+                                      }
+                                      else {
+                                        $line=70;
+                                        if ($opEqualY(comando,'p')) {
+                                          $line=71;
+                                          $result="P2";
+                                          if (true) break $try;
+                                        }
+                                        else {
+                                          $line=72;
+                                          if ($opEqualY(comando,'$')) {
+                                            $line=73;
+                                            $result="F";
+                                            if (true) break $try;
+                                          }
+                                          else {
+                                            $line=75;
+                                            $result="ERROR";
+                                            if (true) break $try;
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
               }
             }
           }
         }
       }
       else {
-        $line=37;
+        $line=79;
         if ($bool(estado.equals("F1"))) {
-          $line=38;
+          $line=80;
           if ($opEqualY(comando,'d')) {
-            $line=39;
+            $line=81;
             $result="I";
             if (true) break $try;
           }
           else {
-            $line=40;
+            $line=82;
             if ($opEqualY(comando,'o')) {
-              $line=41;
+              $line=83;
               $result="O1";
               if (true) break $try;
             }
             else {
-              $line=43;
+              $line=85;
               $result="ERROR";
               if (true) break $try;
             }
           }
         }
         else {
-          $line=45;
+          $line=87;
           if (($bool(estado.equals("O1"))&&$opEqualY(comando,'r'))) {
-            $line=46;
+            $line=88;
             $result="R1";
             if (true) break $try;
           }
           else {
-            $line=48;
+            $line=90;
             if ($bool(estado.equals("R1"))) {
-              $line=49;
+              $line=91;
               if ($opEqualY(comando,'w')) {
-                $line=50;
+                $line=92;
                 $result="W1";
                 if (true) break $try;
               }
               else {
-                $line=52;
+                $line=94;
                 $result="ERROR";
                 if (true) break $try;
               }
             }
             else {
-              $line=54;
+              $line=96;
               if ($bool(estado.equals("W1"))) {
-                $line=55;
+                $line=97;
                 if ($opEqualY(comando,'a')) {
-                  $line=56;
+                  $line=98;
                   $result="A1";
                   if (true) break $try;
                 }
                 else {
-                  $line=58;
+                  $line=100;
                   $result="ERROR";
                   if (true) break $try;
                 }
               }
               else {
-                $line=60;
+                $line=102;
                 if ($bool(estado.equals("A1"))) {
-                  $line=61;
+                  $line=103;
                   if ($opEqualY(comando,'r')) {
-                    $line=62;
+                    $line=104;
                     $result="R2";
                     if (true) break $try;
                   }
                   else {
-                    $line=64;
+                    $line=106;
                     $result="ERROR";
                     if (true) break $try;
                   }
                 }
                 else {
-                  $line=66;
+                  $line=108;
                   if ($bool(estado.equals("R2"))) {
-                    $line=67;
+                    $line=109;
                     if ($opEqualY(comando,'d')) {
-                      $line=68;
+                      $line=110;
                       $result="I";
                       if (true) break $try;
                     }
                     else {
-                      $line=70;
+                      $line=112;
                       $result="ERROR";
                       if (true) break $try;
                     }
                   }
                   else {
-                    $line=74;
-                    if (($bool(estado.equals("L1"))&&$opEqualY(comando,'e'))) {
-                      $line=75;
-                      $result="E1";
-                      if (true) break $try;
-                    }
-                    else {
-                      $line=76;
-                      if (($bool(estado.equals("E1"))&&$opEqualY(comando,'f'))) {
-                        $line=77;
-                        $result="F2";
+                    $line=116;
+                    if ($bool(estado.equals("L1"))) {
+                      $line=117;
+                      if ($opEqualY(comando,'e')) {
+                        $line=118;
+                        $result="E1";
                         if (true) break $try;
                       }
                       else {
-                        $line=78;
-                        if (($bool(estado.equals("F2"))&&$opEqualY(comando,'t'))) {
-                          $line=79;
+                        $line=119;
+                        if ($opEqualY(comando,'t')) {
+                          $line=120;
                           $result="I";
                           if (true) break $try;
                         }
                         else {
-                          $line=81;
+                          $line=122;
+                          $result="ERROR";
+                          if (true) break $try;
+                        }
+                      }
+                    }
+                    else {
+                      $line=125;
+                      if (($bool(estado.equals("E1"))&&$opEqualY(comando,'f'))) {
+                        $line=126;
+                        $result="F2";
+                        if (true) break $try;
+                      }
+                      else {
+                        $line=127;
+                        if (($bool(estado.equals("F2"))&&$opEqualY(comando,'t'))) {
+                          $line=128;
+                          $result="I";
+                          if (true) break $try;
+                        }
+                        else {
+                          $line=130;
                           if ($bool(estado.equals("R3"))) {
-                            $line=82;
+                            $line=131;
                             if ($opEqualY(comando,'i')) {
-                              $line=83;
+                              $line=132;
                               $result="I1";
                               if (true) break $try;
                             }
                             else {
-                              $line=84;
+                              $line=133;
                               if ($opEqualY(comando,'e')) {
-                                $line=85;
+                                $line=134;
                                 $result="E2";
                                 if (true) break $try;
                               }
                               else {
-                                $line=87;
-                                $result="ERROR";
-                                if (true) break $try;
-                              }
-                            }
-                          }
-                          else {
-                            $line=90;
-                            if (($bool(estado.equals("I1"))&&$opEqualY(comando,'g'))) {
-                              $line=91;
-                              $result="G1";
-                              if (true) break $try;
-                            }
-                            else {
-                              $line=92;
-                              if (($bool(estado.equals("G1"))&&$opEqualY(comando,'h'))) {
-                                $line=93;
-                                $result="H1";
-                                if (true) break $try;
-                              }
-                              else {
-                                $line=95;
-                                if (($bool(estado.equals("H1"))&&$opEqualY(comando,'t'))) {
-                                  $line=96;
+                                $line=135;
+                                if ($opEqualY(comando,'t')) {
+                                  $line=136;
                                   $result="I";
                                   if (true) break $try;
                                 }
                                 else {
-                                  $line=99;
+                                  $line=138;
+                                  $result="ERROR";
+                                  if (true) break $try;
+                                }
+                              }
+                            }
+                          }
+                          else {
+                            $line=141;
+                            if (($bool(estado.equals("I1"))&&$opEqualY(comando,'g'))) {
+                              $line=142;
+                              $result="G1";
+                              if (true) break $try;
+                            }
+                            else {
+                              $line=143;
+                              if (($bool(estado.equals("G1"))&&$opEqualY(comando,'h'))) {
+                                $line=144;
+                                $result="H1";
+                                if (true) break $try;
+                              }
+                              else {
+                                $line=146;
+                                if (($bool(estado.equals("H1"))&&$opEqualY(comando,'t'))) {
+                                  $line=147;
+                                  $result="I";
+                                  if (true) break $try;
+                                }
+                                else {
+                                  $line=150;
                                   if (($bool(estado.equals("E2"))&&$opEqualY(comando,'p'))) {
-                                    $line=100;
+                                    $line=151;
                                     $result="P1";
                                     if (true) break $try;
                                   }
                                   else {
-                                    $line=101;
+                                    $line=152;
                                     if (($bool(estado.equals("P1"))&&$opEqualY(comando,'e'))) {
-                                      $line=102;
+                                      $line=153;
                                       $result="E3";
                                       if (true) break $try;
                                     }
                                     else {
-                                      $line=103;
+                                      $line=154;
                                       if (($bool(estado.equals("E3"))&&$opEqualY(comando,'a'))) {
-                                        $line=104;
+                                        $line=155;
                                         $result="A2";
                                         if (true) break $try;
                                       }
                                       else {
-                                        $line=105;
+                                        $line=156;
                                         if (($bool(estado.equals("A2"))&&$opEqualY(comando,'t'))) {
-                                          $line=106;
+                                          $line=157;
                                           $result="I";
                                           if (true) break $try;
                                         }
                                         else {
-                                          $line=108;
-                                          $result="ERROR";
-                                          if (true) break $try;
+                                          $line=159;
+                                          if ($bool(estado.equals("N1"))) {
+                                            $line=160;
+                                            if ($opEqualY(comando,'0')) {
+                                              $line=161;
+                                              $result="N1";
+                                              if (true) break $try;
+                                            }
+                                            else {
+                                              $line=162;
+                                              if ($opEqualY(comando,'1')) {
+                                                $line=163;
+                                                $result="N1";
+                                                if (true) break $try;
+                                              }
+                                              else {
+                                                $line=164;
+                                                if ($opEqualY(comando,'2')) {
+                                                  $line=165;
+                                                  $result="N1";
+                                                  if (true) break $try;
+                                                }
+                                                else {
+                                                  $line=166;
+                                                  if ($opEqualY(comando,'3')) {
+                                                    $line=167;
+                                                    $result="N1";
+                                                    if (true) break $try;
+                                                  }
+                                                  else {
+                                                    $line=168;
+                                                    if ($opEqualY(comando,'4')) {
+                                                      $line=169;
+                                                      $result="N1";
+                                                      if (true) break $try;
+                                                    }
+                                                    else {
+                                                      $line=170;
+                                                      if ($opEqualY(comando,'5')) {
+                                                        $line=171;
+                                                        $result="N1";
+                                                        if (true) break $try;
+                                                      }
+                                                      else {
+                                                        $line=172;
+                                                        if ($opEqualY(comando,'6')) {
+                                                          $line=173;
+                                                          $result="N1";
+                                                          if (true) break $try;
+                                                        }
+                                                        else {
+                                                          $line=174;
+                                                          if ($opEqualY(comando,'7')) {
+                                                            $line=175;
+                                                            $result="N1";
+                                                            if (true) break $try;
+                                                          }
+                                                          else {
+                                                            $line=176;
+                                                            if ($opEqualY(comando,'8')) {
+                                                              $line=177;
+                                                              $result="N1";
+                                                              if (true) break $try;
+                                                            }
+                                                            else {
+                                                              $line=178;
+                                                              if ($opEqualY(comando,'9')) {
+                                                                $line=179;
+                                                                $result="N1";
+                                                                if (true) break $try;
+                                                              }
+                                                              else {
+                                                                $line=180;
+                                                                if ($opEqualY(comando,'$')) {
+                                                                  $line=181;
+                                                                  $result="F";
+                                                                  if (true) break $try;
+                                                                }
+                                                                else {
+                                                                  $line=183;
+                                                                  $result="ERROR";
+                                                                  if (true) break $try;
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                          else {
+                                            $line=187;
+                                            if (($bool(estado.equals("P2"))&&$opEqualY(comando,'e'))) {
+                                              $line=188;
+                                              $result="E4";
+                                              if (true) break $try;
+                                            }
+                                            else {
+                                              $line=189;
+                                              if (($bool(estado.equals("E4"))&&$opEqualY(comando,'n'))) {
+                                                $line=191;
+                                                $result="N2";
+                                                if (true) break $try;
+                                              }
+                                              else {
+                                                $line=192;
+                                                if ($bool(estado.equals("N2"))) {
+                                                  $line=193;
+                                                  if ($opEqualY(comando,'u')) {
+                                                    $line=194;
+                                                    $result="U1";
+                                                    if (true) break $try;
+                                                  }
+                                                  else {
+                                                    $line=195;
+                                                    if ($opEqualY(comando,'d')) {
+                                                      $line=196;
+                                                      $result="D1";
+                                                      if (true) break $try;
+                                                    }
+                                                    else {
+                                                      $line=199;
+                                                      $result="ERROR";
+                                                      if (true) break $try;
+                                                    }
+                                                  }
+                                                }
+                                                else {
+                                                  $line=202;
+                                                  if (($bool(estado.equals("U1"))&&$opEqualY(comando,'p'))) {
+                                                    $line=203;
+                                                    $result="I";
+                                                    if (true) break $try;
+                                                  }
+                                                  else {
+                                                    $line=206;
+                                                    if (($bool(estado.equals("D1"))&&$opEqualY(comando,'o'))) {
+                                                      $line=207;
+                                                      $result="O2";
+                                                      if (true) break $try;
+                                                    }
+                                                    else {
+                                                      $line=208;
+                                                      if (($bool(estado.equals("O2"))&&$opEqualY(comando,'w'))) {
+                                                        $line=209;
+                                                        $result="W2";
+                                                        if (true) break $try;
+                                                      }
+                                                      else {
+                                                        $line=210;
+                                                        if (($bool(estado.equals("W2"))&&$opEqualY(comando,'n'))) {
+                                                          $line=211;
+                                                          $result="I";
+                                                          if (true) break $try;
+                                                        }
+                                                        else {
+                                                          $line=213;
+                                                          $result="ERROR";
+                                                          if (true) break $try;
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
                                         }
                                       }
                                     }
@@ -278,11 +584,113 @@ public final class logo {
           }
         }
       }
-      $line=110;
-      $rethrow(new RuntimeException("The function \"\u03B4(estado:Object,comando:Object)\" did not return a value."));
+      $line=215;
+      $rethrow(new RuntimeException("The function \"transiciones(estado:Object,comando:Object)\" did not return a value."));
     }
     catch (Throwable $throwable) {
-      $rethrow($throwable,logo.class,"\u03B4",$line);
+      $rethrow($throwable,logo.class,"transiciones",$line);
+    }
+    return $result;
+  }
+  public static Object imprFlechas(Object estado, Object simbolo) {
+    int $line=0;
+    Object $result=null;
+    $try:try {
+      $line=219;
+      if ($opEqualY(simbolo,'d')) {
+        $line=220;
+        $result="F";
+        if (true) break $try;
+      }
+      else {
+        $line=221;
+        if (($bool(estado.equals("F2"))&&$opEqualY(simbolo,'t'))) {
+          $line=222;
+          $result="L";
+          if (true) break $try;
+        }
+        else {
+          $line=223;
+          if (($bool(estado.equals("L1"))&&$opEqualY(simbolo,'t'))) {
+            $line=224;
+            $result="L";
+            if (true) break $try;
+          }
+          else {
+            $line=225;
+            if (($bool(estado.equals("W2"))&&$opEqualY(simbolo,'n'))) {
+              $line=226;
+              $result="D";
+              if (true) break $try;
+            }
+            else {
+              $line=227;
+              if (($bool(estado.equals("H1"))&&$opEqualY(simbolo,'t'))) {
+                $line=228;
+                $result="R";
+                if (true) break $try;
+              }
+              else {
+                $line=229;
+                if (($bool(estado.equals("R3"))&&$opEqualY(simbolo,'t'))) {
+                  $line=230;
+                  $result="R";
+                  if (true) break $try;
+                }
+                else {
+                  $line=231;
+                  if (($bool(estado.equals("U1"))&&$opEqualY(simbolo,'P'))) {
+                    $line=232;
+                    $result="P";
+                    if (true) break $try;
+                  }
+                  else {
+                    $line=233;
+                    if ($opEqualY(simbolo,'[')) {
+                      $line=234;
+                      $result="/";
+                      if (true) break $try;
+                    }
+                    else {
+                      $line=235;
+                      if ($opEqualY(simbolo,']')) {
+                        $line=236;
+                        $result="*";
+                        if (true) break $try;
+                      }
+                      else {
+                        $line=238;
+                        $result="";
+                        if (true) break $try;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      $line=243;
+      $rethrow(new RuntimeException("The function \"imprFlechas(estado:Object,simbolo:Object)\" did not return a value."));
+    }
+    catch (Throwable $throwable) {
+      $rethrow($throwable,logo.class,"imprFlechas",$line);
+    }
+    return $result;
+  }
+  public static Object imprEstados(Object estado) {
+    int $line=0;
+    Object $result=null;
+    $try:try {
+      $line=245;
+      $result="";
+      if (true) break $try;
+      $line=246;
+      $rethrow(new RuntimeException("The function \"imprEstados(estado:Object)\" did not return a value."));
+    }
+    catch (Throwable $throwable) {
+      $rethrow($throwable,logo.class,"imprEstados",$line);
     }
     return $result;
   }

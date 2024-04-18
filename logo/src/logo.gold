@@ -1,6 +1,15 @@
 /*
  * 
- * 
+ * Tokens 
+ * Forward :'F'
+ * Right: 'R'
+ *Left:'L'
+ * Repeat:'T' 
+ * Penup:'P'
+ * Pendown:'D'
+ * [:/
+ * ]:*
+ * Decimales:'N'
  * 
  */
 //-----------------------
@@ -9,17 +18,22 @@ using gold.structures.automaton.*
 using gold.visualization.automaton.*
 
 procedure main(args:String[]) begin
-	Q := {"I", "F", "F1","ERROR","O1","R1","W1","A1","R2","L1","E1","F2","R3","I1",
-	"G1","H1","T1", "R4","E2","P1","E3","A2"}
-	Σ := {'f', 'd','$','o','r','w','a','l','e','f','t','i','g','h','t','p','t'}
-	q := "I"
-	F := {"F"}
+	Estados := {"I", "F", "F1","ERROR","O1","R1","W1","A1","R2","L1","E1","F2","R3","I1",
+	"G1","H1","E2","P1","E3","A2","PI","PD","N1","P2","N2","U1","E4","D1","O2","W2"}
+	Input := {'f', 'd','$','o','r','w','a','l','e','f','t','i','g','h','t','p','t','1','2','3','4','5','7','8','9','0','u','n',
+	'F','R','L','T','P','D','/','*','N','[',']'}
+	inicial := "I"
+	Output := Input
+	Finales := {"F"}
 	
-	A : GDeterministicAutomaton := GDeterministicAutomaton(Q, Σ, q, F, δ)
-	GAutomataFrame.show(A)
+	
+	T := GDeterministicTransducer(Estados,Input,Output,
+	                             inicial,Finales,transiciones,
+	                             imprEstados,imprFlechas)
+    GAutomataFrame.show(T)
 end
 
-function δ(estado, comando) begin
+function transiciones(estado, comando) begin
 	if estado = "I" then
 		if comando ='f'  then
 			return "F1"
@@ -29,6 +43,34 @@ function δ(estado, comando) begin
 			return "F"
 		elseif comando ='r' then
 			return "R3"
+		elseif comando ='['then
+			return "I"
+		elseif comando =']'then
+			return "I"
+		elseif comando ='0' then
+			return"N1"
+		elseif comando ='1' then
+			return"N1"
+		elseif comando ='2' then
+			return"N1"
+		elseif comando ='3' then
+			return"N1"
+		elseif comando ='4' then
+			return"N1"
+		elseif comando ='5' then
+			return"N1"
+		elseif comando ='6' then
+			return"N1"
+		elseif comando ='7' then
+			return"N1"
+		elseif comando ='8' then
+			return"N1"
+		elseif comando ='9' then
+			return"N1"
+		elseif comando ='p' then
+			return"P2"
+		elseif comando = '$' then
+            return "F"	
 		else
 			return "ERROR"
 		end
@@ -71,8 +113,15 @@ function δ(estado, comando) begin
 		end
 		
 		//LEFT
-	elseif estado.equals("L1")&& comando ='e'  then
-			return"E1"
+	elseif estado.equals("L1")  then
+			if comando ='e'  then
+				return"E1"
+			elseif comando='t' then	
+				return "I"
+			else
+			return "ERROR"
+			end
+			
 	elseif estado.equals("E1")&& comando ='f'  then
 			return"F2"
 	elseif estado.equals("F2")&& comando ='t'  then
@@ -83,6 +132,8 @@ function δ(estado, comando) begin
 			return"I1"
 		elseif comando = 'e' then
 			return"E2"
+		elseif comando = 't' then
+			return"I"
 		else
 			return "ERROR"
 		end
@@ -104,9 +155,92 @@ function δ(estado, comando) begin
 			return"A2"
 	elseif estado.equals("A2")&& comando ='t'  then
 			return 	"I"
+	//Numeros		
+	elseif estado.equals("N1") then
+		if comando ='0' then
+			return"N1"
+		elseif comando ='1' then
+			return"N1"
+		elseif comando ='2' then
+			return"N1"
+		elseif comando ='3' then
+			return"N1"
+		elseif comando ='4' then
+			return"N1"
+		elseif comando ='5' then
+			return"N1"
+		elseif comando ='6' then
+			return"N1"
+		elseif comando ='7' then
+			return"N1"
+		elseif comando ='8' then
+			return"N1"
+		elseif comando ='9' then
+			return"N1"
+		elseif comando ='$' then
+			return"F"
+		else
+			return"ERROR"
+		end
+	
+	//Penup
+	elseif estado.equals("P2")&& comando ='e'  then
+			return"E4"
+	elseif estado.equals("E4")&& comando ='n'  then
+			
+			return"N2"
+	elseif estado.equals("N2") then
+			if comando ='u' then
+				return "U1"
+			elseif comando ='d' then
+				return "D1"
+				
+			else
+				return "ERROR"
+			end
+			
+	elseif estado.equals("U1")&& comando ='p'  then
+			return 	"I"
+			
+	//Pendown
+	elseif estado.equals("D1") && comando=='o' then
+		return "O2"
+	elseif estado.equals("O2") && comando=='w' then
+		return "W2"
+	elseif estado.equals("W2") && comando=='n' then
+		return "I"	
 	else
 		return "ERROR"
 	end
 end
 
+function imprFlechas(estado,simbolo) begin
+	
+	if simbolo = 'd' then
+		return "F"
+	elseif estado.equals("F2") && simbolo ='t' then
+		return "L"
+	elseif estado.equals("L1") && simbolo ='t' then
+		return "L"
+	elseif estado.equals("W2") && simbolo ='n' then
+		return "D"
+	elseif estado.equals("H1") && simbolo ='t' then
+		return "R"
+	elseif estado.equals("R3") && simbolo ='t' then
+		return "R"
+	elseif estado.equals("U1") && simbolo ='P' then
+		return "P"
+	elseif  simbolo ='[' then
+		return "/"
+	elseif simbolo =']' then
+		return "*"
+	else
+		return λ
+			
+		end
 
+	
+end
+function imprEstados(estado) begin
+	return λ
+end
