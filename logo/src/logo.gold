@@ -1,0 +1,321 @@
+/*
+ * 
+ * 
+ * Recomendaciones para que correr el programa
+ * 1. finalizar siempre la instrucion con el signo'$'
+ * Tokens 
+ * Forward :'F'
+ * Right: 'R'
+ *Left:'L'
+ * Repeat:'+' 
+ * Penup:'P'
+ * Pendown:'D'
+ * [:[
+ * ]:]
+ * Decimales:'N'
+ * 
+ * 
+ * 
+ */
+//-----------------------
+
+using gold.structures.automaton.*
+using gold.visualization.automaton.*
+
+procedure main(args:String[]) begin
+	Estados := {"I", "F", "F1","ERROR","O1","R1","W1","A1","R2","L1","E1","F2","R3","I1",
+	"G1","H1","E2","P1","E3","A2","N1","P2","N2","U1","E4","D1","O2","W2","PI","PD"}
+	Input := {'f', 'd','$','o','r','w','a','l','e','f','t','i','g','h','t','p','t','1','2','3','4','5','6','7','8','9','0','u','n',
+	'+','/','*','[',']',' ',
+	'F','D', 'O', 'R', 'W', 'A', 'L', 'E', 'F', 'T', 'I', 'G', 'H', 'T', 'P', 'T', 'U', 'N'}
+	inicial := "I"
+	Output := Input
+	Finales := {"F"}
+	
+	
+	T := GDeterministicTransducer(Estados,Input,Output,
+	                             inicial,Finales,transiciones,
+	                             imprEstados,imprFlechas)
+    GAutomataFrame.show(T)
+end
+
+function transiciones(estado, comando) begin
+	
+	if estado = "I" then
+		if comando ='f' || comando ='F' then
+			return "F1"
+		elseif comando =' '  then
+			return 	"I"
+		elseif comando ='l' || comando = 'L'then
+			return "L1"
+		elseif comando ='$' then
+			return "F"
+		elseif comando ='r' || comando ='R'then
+			return "R3"
+		elseif comando ='['then
+			return "I"
+		elseif comando =']'then
+			return "I"
+		elseif comando in {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'}then
+			return"N1"
+		elseif comando ='p' || comando ='P'then
+			return"P2"
+		elseif comando = '$' then
+            return "F"
+       elseif comando = ' ' then
+            return "I"
+       
+       /*elseif comando = λ then
+            return "I"*/
+		else
+			return "ERROR"
+		end
+		
+		//FORWARD
+	elseif estado.equals("F1") then
+		if comando= 'd' || comando ='D'then
+			return "I"
+		elseif comando ='o' || comando= 'O'then
+			return "O1"
+		else
+			return"ERROR"
+		end
+	elseif estado.equals("O1")&& (comando ='r' ||comando ='R')  then
+			return"R1"
+	
+	elseif estado.equals("R1")  then
+		if comando ='w' || comando='W' then
+			return"W1"
+		else
+			return "ERROR"
+		end
+	elseif estado.equals("W1")  then
+		if comando ='a'|| comando ='A'  then
+			return"A1"
+		else
+			return "ERROR"
+		end
+	elseif estado.equals("A1")  then
+		if comando ='r' || comando ='R' then
+			return"R2"
+		else
+			return "ERROR"
+		end
+	elseif estado.equals("R2")  then
+		if comando ='d' || comando ='D'  then
+			return"I"
+		else
+			return "ERROR"
+		end
+		
+		//LEFT
+	elseif estado.equals("L1")  then
+			if comando ='e' || comando ='E'  then
+				return"E1"
+			elseif comando='t' || comando ='T' then	
+				return "I"
+			else
+			return "ERROR"
+			end
+			
+	elseif estado.equals("E1")&& (comando ='f' || comando='F')  then
+			return"F2"
+	elseif estado.equals("F2")&& (comando ='t' || comando ='T') then
+			return"I"
+		//RIGHT
+	elseif estado.equals("R3")  then
+		if comando ='i' || comando ='I' then
+			return"I1"
+		elseif comando = 'e' || comando='E' then
+			return"E2"
+		elseif comando = 't' || comando ='T' then
+			return"I"
+		else
+			return "ERROR"
+		end
+			
+	elseif estado.equals("I1")&& (comando ='g'|| comando ='G')  then
+			return"G1"
+	elseif estado.equals("G1")&& (comando ='h' || comando ='H')  then
+			return"H1"
+			
+	elseif estado.equals("H1")&& (comando ='t' || comando='T')  then
+			return"I"
+			
+	//Repeat
+	elseif estado.equals("E2")&& (comando ='p' || comando='P')  then
+			return"P1"
+	elseif estado.equals("P1")&& (comando ='e' || comando='E')  then
+			return"E3"
+	elseif estado.equals("E3")&& (comando ='a' || comando='A')  then
+			return"A2"
+	elseif estado.equals("A2")&& (comando ='t' || comando ='T') then
+			return 	"I"
+	//Numeros		
+
+	elseif estado.equals("N1") then
+    	
+
+    	if comando in {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'} then
+        return "N1"
+    	elseif comando = '$' then
+        return "F"
+    	elseif comando =' ' then
+        return "I"
+       elseif comando ='f' || comando ='F' then
+        return "F1"
+       elseif comando ='r'||comando ='R' then
+        return "R3"
+       elseif comando = 'l'|| comando ='L' then
+        return "L1"
+       elseif comando = 'p' || comando ='P' then
+        return "P2"
+       elseif comando = '['  then
+        return "PI"
+       elseif comando =']' then
+       	return "PD"
+       
+    	else
+        return "ERROR"
+    	end
+	
+	//Penup
+	
+	elseif estado.equals("P2")&& (comando ='e' || comando ='E')  then
+			return"E4"
+	elseif estado.equals("E4")&& (comando ='n' || comando ='N') then
+			
+			return"N2"
+	elseif estado.equals("N2") then
+			if comando ='u' || comando ='U' then
+				return "U1"
+			elseif comando ='d' || comando= 'D' then
+				return "D1"
+				
+			else
+				return "ERROR"
+			end
+			
+	elseif estado.equals("U1")&& (comando ='p' || comando ='P')  then
+			return 	"I"
+			
+	
+	//Pendown
+	elseif estado.equals("D1") && (comando='o' || comando='O') then
+		return "O2"
+	elseif estado.equals("O2") && (comando='w' || comando ='W') then
+		return "W2"
+	elseif estado.equals("W2") && (comando='n' || comando='N') then
+		return "I"	
+
+	//PARENTESIS
+	elseif estado.equals("PI") then
+		if comando in {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'} then
+        return "N1"
+    	elseif comando = '$' then
+        return "F"
+    	elseif comando =' ' then
+        return "I"
+       elseif comando ='f' || comando ='F' then
+        return "F1"
+       elseif comando ='r'||comando ='R' then
+        return "R3"
+       elseif comando = 'l'|| comando ='L' then
+        return "L1"
+       elseif comando = 'p' || comando ='P' then
+        return "P2"
+       elseif comando = '['  then
+        return "I"
+       elseif comando =']' then
+       	return "I"
+		else
+		return"ERROR"
+		end
+	elseif estado.equals("PD") then
+		if comando in {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'} then
+        return "N1"
+    	elseif comando = '$' then
+        return "F"
+    	elseif comando =' ' then
+        return "I"
+       elseif comando ='f' || comando ='F' then
+        return "F1"
+       elseif comando ='r'||comando ='R' then
+        return "R3"
+       elseif comando = 'l'|| comando ='L' then
+        return "L1"
+       elseif comando = 'p' || comando ='P' then
+        return "P2"
+       elseif comando = '['  then
+        return "I"
+       elseif comando =']' then
+       	return "I"
+		else
+		return"ERROR"
+		end
+	else
+		return "ERROR"
+	end
+end
+
+function imprFlechas(estado,simbolo) begin
+	
+	if estado.equals("F1")&& (simbolo ='d'|| simbolo='D') then
+		return "F"
+	elseif estado.equals("R2")&& (simbolo ='d'|| simbolo='D') then
+		return "F"
+	elseif estado.equals("F2") && (simbolo ='t' || simbolo='T') then
+		return "L"
+	elseif estado.equals("L1") && (simbolo ='t' || simbolo='T') then
+		return "L"
+	elseif estado.equals("W2") && (simbolo ='n' || simbolo ='N') then
+		return "D"
+	elseif estado.equals("H1") && (simbolo ='t' || simbolo ='T') then
+		return "R"
+	elseif estado.equals("R3") && (simbolo ='t' || simbolo='T') then
+		return "R"
+	elseif estado.equals("U1") && (simbolo ='p' || simbolo ='P') then
+		return "P"
+	elseif estado ="I" && simbolo ='[' then
+		return "["
+	elseif estado ="I" && simbolo =']' then
+		return "]"
+	elseif estado.equals("A2") && (simbolo ='t' || simbolo= 'T') then
+		return "+"
+	elseif estado.equals("N1")&&simbolo = '$'  then 
+		return "N"
+	elseif estado.equals("N1")&&simbolo = ' ' then 
+		return "N"
+	elseif estado.equals("N1")&&simbolo ='[' then 
+		return "N"
+	elseif estado.equals("N1")&&simbolo = ']' then 
+		return "N"
+	elseif estado.equals("N1")&& (simbolo ='f' || simbolo ='F') then
+      	return "N"
+    elseif estado.equals("N1")&& (simbolo ='r'||simbolo ='R') then
+        return "N"
+    elseif estado.equals("N1")&& (simbolo = 'l'|| simbolo ='L') then
+        return "N"
+    elseif estado.equals("N1")&& ( simbolo = 'p' || simbolo ='P') then
+        return "N"
+    elseif estado.equals("PD")&&simbolo = '['  then 
+		return "["
+	elseif estado.equals("PI")&&simbolo = ']'  then 
+		return "]"
+	
+	else
+		return λ
+			
+		end
+ 
+	
+end
+function imprEstados(estado) begin
+	if estado.equals("PI") then
+		return "["
+	elseif estado.equals("PD") then
+		return "]"
+	else
+	return λ
+	end
+end
